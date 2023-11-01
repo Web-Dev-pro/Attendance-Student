@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{{team.name}} ballari {% endblock title %}
+
+{% block content %}
+<div class="container mt-3">
+        <h3 class="m-4"> {{team.name}} davomati</h3>
+<form method="post">
+    {% csrf_token %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Ism Familya</th>
+                    <th scope="col">Davomat</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for worker in team.workers.all %}
+                <tr>
+                    <td>{{worker.fist_name}} {{worker.last_name}}</td>
+                    <td>
+                        <div class="d-flex">
+                        <div class="form-check">
+                            <input type="hidden" name="worker_{{worker.id}}" value="{{worker.id}}">
+                            <input name="is_attended_{{worker.id}}" type="checkbox" class="form-check-input" id="flexCheckChecked" checked>
+                            <div class="num mx-2">
+                                <p>10</p>
+                            </div>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="hidden" name="worker_{{worker.id}}" value="{{worker.id}}">
+                            <input name="is_attended_{{worker.id}}" type="checkbox" class="form-check-input" id="flexCheckChecked" checked>
+                            <div class="num mx-2">
+                                <p>10</p>
+                            </div>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="hidden" name="worker_{{worker.id}}" value="{{worker.id}}">
+                            <input name="is_attended_{{worker.id}}" type="checkbox" class="form-check-input" id="flexCheckChecked" checked>
+                            <div class="num mx-2">
+                                <p>10</p>
+                            </div>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                {% endfor %}        
+        </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Tasdiqlash</button>
+    </form>
+</div>
+{% endblock content %}

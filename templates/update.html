@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{{attendance.team.name}} jamoasini bugungi davomadini tahrirlash. {% endblock title %}
+
+{% block content %}
+<div class="container mt-3">
+        <h3 class="m-4">{{attendance.team.name}} jamoasini bugungi davomadini tahrirlash.</h3>
+<form method="post">
+    {% csrf_token %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Ism Familya</th>
+                    <th scope="col">Davomat</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mark in attendance.marks.all %}
+                <tr>
+                    <td>{{marks.worker.fist_name}} {{marks.worker.last_name}}</td>
+                    <td>
+                        <div class="form-check">
+                            <input name="is_attended_{{mark.id}}" type="checkbox" class="form-check-input" value="" id="flexCheckChecked" {% if mark.is_attended %} checked {%endif%}>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}        
+        </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Tasdiqlash</button>
+    </form>
+</div>
+{% endblock content %}
